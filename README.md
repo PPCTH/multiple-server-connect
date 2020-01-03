@@ -18,7 +18,7 @@ db2 catalog tcpip node <NODENAME> remote <REMOTE> server <PORT>
 
 ### Installing
 ```
-DB2Connect.bat <SQL> <SERVER_CONNECTION>
+DB2Connect.bat <SERVER_CONNECTION_FILE> <SQL_FILE>
 ```
 
 ## Authors
