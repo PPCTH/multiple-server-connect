@@ -14,6 +14,7 @@ echo %DB2CLP%
 db2 catalog tcpip node <NODENAME> remote <REMOTE> server <PORT>
 ```
 * **SQL file** with simple single query
+* **SQL file name** using **table** name as file name put inside **SQL** folder
 * prepare DB2 connection -*server*-,-*username*-,-*password*-
 
 ### Installing
