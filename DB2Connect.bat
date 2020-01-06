@@ -21,25 +21,23 @@ IF NOT EXIST %SQLLIST% (
 
 FOR /F "tokens=1-3 delims=," %%i in (%SERVERENV%) do (
 	
-	
 	ECHO -------- CONNECT TO %%i --------- >> %LOGFILE%
 	db2 -l %LOGFILE% connect to %%i user %%j using %%k
 
 	FOR /F "tokens=*" %%a in (%SQLLIST%) do (
 
-		SET SQLFILE=SQL/%%a
 		ECHO ------------------------------------ >> %LOGFILE%
 		ECHO -- PREPARE TO PROCESS %%a -- >> %LOGFILE%
-		IF NOT EXIST %SQLFILE% (
-			ECHO cannot file %SQLFILE% try to start again. >> %LOGFILE%
-			GOTO :EOF
-		)
-		db2 -l %LOGFILE% -tvf %SQLFILE%
-		db2 terminate
 		
-		ECHO --- FINISTH PROCESS %%a ---- >> %LOGFILE%
-		ECHO ------------------------------------ >> %LOGFILE%
+			IF NOT EXIST %%a (
+				ECHO cannot file %SQLFILE% try to start again. >> %LOGFILE%
+				GOTO :EOF
+			)
 
+			db2 -l %LOGFILE% -tvf %%a
+			ECHO --- FINISTH PROCESS %%a ---- >> %LOGFILE%
+		)
 	)
-
+	db2 terminate
+	ECHO ----------------------------------------- >> %LOGFILE%
 )
